@@ -267,13 +267,12 @@ int id homeAsUp 0x7f050005
 int id icon 0x7f05002a
 int id ifRoom 0x7f05000a
 int id image 0x7f050027
+int id linearLayout1 0x7f05003e
 int id listMode 0x7f050001
 int id list_item 0x7f050029
 int id loginButton 0x7f050042
 int id loginKennitala 0x7f050040
-int id loginLabelKennitala 0x7f05003f
-int id loginLabelPassword 0x7f05003e
-int id loginLogo 0x7f05003d
+int id loginLogo 0x7f05003f
 int id loginPassword 0x7f050041
 int id middle 0x7f050012
 int id never 0x7f050009
@@ -303,6 +302,7 @@ int id title 0x7f05002b
 int id top_action_bar 0x7f050020
 int id up 0x7f050021
 int id useLogo 0x7f050003
+int id view1 0x7f05003d
 int id withText 0x7f05000c
 int integer abc_max_action_buttons 0x7f090000
 int layout abc_action_bar_decor 0x7f030000
@@ -331,8 +331,9 @@ int layout abc_search_view 0x7f030016
 int layout abc_simple_decor 0x7f030017
 int layout activity_login 0x7f030018
 int layout background 0x7f030019
-int layout fragment_login 0x7f03001a
-int layout support_simple_spinner_dropdown_item 0x7f03001b
+int layout background_white 0x7f03001a
+int layout fragment_login 0x7f03001b
+int layout support_simple_spinner_dropdown_item 0x7f03001c
 int menu login 0x7f0c0000
 int string abc_action_bar_home_description 0x7f0a0001
 int string abc_action_bar_up_description 0x7f0a0002

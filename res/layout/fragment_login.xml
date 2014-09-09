@@ -9,70 +9,58 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:windowActionBar="false"
     tools:context="is.glitch.innaapp.Login$PlaceholderFragment" >
 
-    <EditText
-        android:id="@+id/loginKennitala"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="230dp"
+        android:layout_centerVertical="true"
+        android:background="@layout/background_white" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/loginPassword"
-        android:layout_marginLeft="24dp"
-        android:layout_toRightOf="@+id/loginLabelKennitala"
-        android:ems="10" 
-        android:inputType="number" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loginLabelPassword"
-        android:layout_alignBottom="@+id/loginLabelPassword"
-        android:layout_alignLeft="@+id/loginKennitala"
-        android:ems="10"
-        android:inputType="textPassword" >
+        <ImageView
+            android:id="@+id/loginLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dp"
+            android:contentDescription="@string/inna_logo"
+            android:src="@drawable/logo" />
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/loginKennitala"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:ems="10"
+            android:hint="@string/kennitala"
+            android:inputType="number"
+            tools:ignore="HardcodedText" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/loginPassword"
-        android:layout_marginBottom="60dp"
-        android:text="@string/skr_inn" 
-        android:onClick="login" />
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:ems="10"
+            android:hint="@string/lykilor_"
+            android:inputType="textPassword" />
 
-    <ImageView
-        android:id="@+id/loginLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/loginLabelPassword"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="81dp"
-        android:contentDescription="@string/inna_logo"
-        android:src="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/loginLabelKennitala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginKennitala"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="0dp"
-        android:text="@string/kennitala" />
-
-    <TextView
-        android:id="@+id/loginLabelPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/loginButton"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="110dp"
-        android:layout_marginLeft="0dp"
-        android:text="@string/lykilor_" />
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:onClick="login"
+            android:text="@string/skr_inn" />
+    </LinearLayout>
 
 </RelativeLayout>
