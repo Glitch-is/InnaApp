@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.EditText;
 
 import is.glitch.innaapp.R;
 import is.glitch.innaapp.fragments.LoginFragment;
@@ -46,5 +47,7 @@ public class LoginActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
