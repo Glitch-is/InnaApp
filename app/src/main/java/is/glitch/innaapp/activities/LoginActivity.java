@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +49,11 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    public void Login(View view)
+    {
+        EditText user = (EditText) findViewById(R.id.username_input);
+        String name = user.getText().toString();
+        Log.v("Inna", name);
+    }
 
 }
