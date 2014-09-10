@@ -2,17 +2,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/login_margin_portrait"
-    android:paddingBottom="@dimen/login_margin_portrait"
     tools:context="is.glitch.innaapp.activities.LoginActivity$PlaceholderFragment"
     android:orientation="vertical"
-    android:id="@+id/">
+    android:paddingTop="@dimen/login_padding_portrait"
+    android:paddingLeft="@dimen/login_padding_landscape"
+    android:paddingRight="@dimen/login_padding_landscape"
+    android:weightSum="1">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_weight="0.35" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/username_input"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="6dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password_input"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"/>
     </LinearLayout>
 </LinearLayout>

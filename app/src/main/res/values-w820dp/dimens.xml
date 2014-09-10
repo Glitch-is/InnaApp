@@ -1,6 +1,2 @@
 <resources>
-    <dimen name="login_margin_portrait">64dp</dimen>
-
-    <dimen name="button_min_width">100dp</dimen>
-    <dimen name="button_min_height">45dp</dimen>
 </resources>
