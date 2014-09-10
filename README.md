@@ -4,11 +4,10 @@ InnaApp
 The Android App for Inna
 
 ##Screenshots
-![Screenshot](http://i.imgur.com/3LyOGId.png)
+![Screenshot](http://i.imgur.com/i6HWJ8d.png)
 
 ##Usage
-As of now this app is not on any android markets so you need to install the [InnaApp.apk] (https://github.com/RuNnNy/InnaApp/raw/master/bin/InnaApp.apk) that is located in the bin folder
-
+Since this project is very early on in it's development we higly reccommend against using this app at this moment.
 
 ##Goal
 The goal of this project is to end up with a fully functioning android interface for Inna marketed towards students with android phones for ease of access to the system.
