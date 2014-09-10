@@ -2,6 +2,7 @@
 <resources>
     <color name="lime">#ffaabb38</color>
     <color name="lime_dark">#ff9dae33</color>
+    <color name="lime_dark_pressed">#ff8fa02e</color>
     <color name="gray">#676867</color>
     <color name="white">#ffffff</color>
 </resources>

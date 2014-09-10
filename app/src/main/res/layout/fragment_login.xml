@@ -7,7 +7,6 @@
     android:paddingTop="@dimen/login_padding_portrait"
     android:paddingLeft="@dimen/login_padding_landscape"
     android:paddingRight="@dimen/login_padding_landscape"
-    android:background="@color/lime"
     android:weightSum="1">
 
     <LinearLayout
@@ -15,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_weight="0.06">
+        android:layout_weight="0.08">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -28,21 +27,23 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/username_input"
+            android:id="@+id/input_username"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="6dp"
-            android:hint="Kennitala" />
+            android:hint="Kennitala"
+            android:inputType="textNoSuggestions|textWebEditText"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/password_input"
+            android:id="@+id/input_password"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:hint="Lykilorð" />
+            android:hint="Lykilorð"
+            android:inputType="textWebPassword"/>
 
     </LinearLayout>
 
@@ -50,7 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Skrá inn"
-        android:background="@color/lime_dark"
-        android:id="@+id/button"
+        android:id="@+id/button_login"
         android:onClick="Login" />
 </LinearLayout>
