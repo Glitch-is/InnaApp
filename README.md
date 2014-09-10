@@ -4,7 +4,7 @@ InnaApp
 The Android App for Inna
 
 ##Screenshots
-![Screenshot](http://i.imgur.com/i6HWJ8d.png)
+![Screenshot](http://i.imgur.com/ndr7y8L.png)
 
 ##Usage
 Since this project is very early on in it's development we higly reccommend against using this app at this moment.
