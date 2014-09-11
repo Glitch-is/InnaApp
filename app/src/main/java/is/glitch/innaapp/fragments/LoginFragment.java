@@ -36,8 +36,7 @@ public class LoginFragment extends Fragment {
 		loginSubmit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				//CLICKED LOGIN
-
+                Login();
 			}
 		});
 
@@ -45,7 +44,7 @@ public class LoginFragment extends Fragment {
 	}
 
 
-	public void Login(View view) {
+	public void Login() {
 		String username = usernameInput.getText().toString();
         String password = passwordInput.getText().toString();
         LoginManager l = new LoginManager(username, password);
