@@ -2,13 +2,13 @@ package is.glitch.innaapp.fragments;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import is.glitch.innaapp.LoginManager;
 
+import is.glitch.innaapp.LoginManager;
 import is.glitch.innaapp.R;
 
 /**
@@ -17,6 +17,7 @@ import is.glitch.innaapp.R;
 public class LoginFragment extends Fragment {
 
 	private View view = null;
+	private Button loginSubmit = null;
     private EditText usernameInput = null;
     private EditText passwordInput = null;
 
@@ -28,8 +29,17 @@ public class LoginFragment extends Fragment {
 	                         Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.fragment_login, container, false);
 
+		loginSubmit = (Button) view.findViewById(R.id.button_login);
 		usernameInput = (EditText) view.findViewById(R.id.input_username);
         passwordInput = (EditText) view.findViewById(R.id.input_password);
+
+		loginSubmit.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				//CLICKED LOGIN
+
+			}
+		});
 
 		return view;
 	}
