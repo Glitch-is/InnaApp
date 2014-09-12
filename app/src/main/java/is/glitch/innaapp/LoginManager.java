@@ -3,6 +3,7 @@ package is.glitch.innaapp;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -55,7 +56,7 @@ public class LoginManager extends AsyncTask<Void, Void, Void> {
         } catch (IOException e) {
             responseStr = "Failed to send request";
         }
-        Log.v("Inna", responseStr);
+        String sessionID = response.getHeaders("Set-Cookie")[0].getValue().split("=")[1].split(";")[0];
 
         return null;
     }
