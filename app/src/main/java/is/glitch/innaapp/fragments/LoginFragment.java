@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.apache.http.impl.cookie.BasicClientCookie;
+
 import is.glitch.innaapp.LoginManager;
-import is.glitch.innaapp.Main;
 import is.glitch.innaapp.R;
 import is.glitch.innaapp.User;
+import is.glitch.innaapp.activities.MainActivity;
 
 /**
  * Created by nasir on 10/09/14.
@@ -42,7 +44,11 @@ public class LoginFragment extends Fragment {
 				final String username = usernameInput.getText().toString().trim();
 				final String password = passwordInput.getText().toString();
 
-                Login(username, password);
+//                Login(username, password);
+				User user = new User("testUser", "dummy", new BasicClientCookie("JSESSIONID", "dummy"));
+				Intent mainIntent = new Intent(getActivity(), MainActivity.class)
+						.putExtra("user", user);
+				startActivity(mainIntent);
 			}
 		});
 
@@ -74,7 +80,7 @@ public class LoginFragment extends Fragment {
 	        public void onFinish(User user) {
 		        if (user != null) {
 
-			        Intent mainIntent = new Intent(getActivity(), Main.class)
+			        Intent mainIntent = new Intent(getActivity(), MainActivity.class)
 					        .putExtra("user", user);
 			        startActivity(mainIntent);
 			        getActivity().finish();

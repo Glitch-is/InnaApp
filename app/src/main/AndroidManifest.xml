@@ -22,6 +22,10 @@
             android:name=".Main"
             android:label="@string/title_activity_main" >
         </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
