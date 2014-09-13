@@ -30,7 +30,7 @@ public class API {
         } catch (Exception e)
         {
             Log.v("Inna API", e.getMessage());
-            return e.getMessage();
+            return "{"+e.getMessage()+"}";
         }
     }
 
@@ -44,7 +44,7 @@ public class API {
             return EntityUtils.toString(response.getEntity());
         } catch (Exception e)
         {
-            Log.v("Inna API", e.getMessage());
+            Log.v("Inna API", "{"+e.getMessage()+"}");
             return e.getMessage();
         }
     }
