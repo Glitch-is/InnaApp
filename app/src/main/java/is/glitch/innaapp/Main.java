@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.TextView;
 
 import is.glitch.innaapp.fragments.LoginFragment;
 
@@ -32,7 +33,13 @@ public class Main extends Activity {
         Bundle data = getIntent().getExtras();
         user = data.getParcelable("user");
 
-        API.userInfo(user);
+        // Create the text view
+        TextView test = new TextView(this);
+        test.setTextSize(12);
+        test.setText(API.userInfo(user));
+
+        // Set the text view as the activity layout
+        setContentView(test);
 
     }
 
