@@ -1,6 +1,7 @@
 package is.glitch.innaapp.fragments;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONObject;
+
 import is.glitch.innaapp.LoginManager;
+import is.glitch.innaapp.Main;
 import is.glitch.innaapp.R;
+import is.glitch.innaapp.User;
 
 /**
  * Created by nasir on 10/09/14.
@@ -45,8 +50,46 @@ public class LoginFragment extends Fragment {
 
 
 	public void Login() {
-		String username = usernameInput.getText().toString();
-        String password = passwordInput.getText().toString();
+		final String username = usernameInput.getText().toString();
+        final String password = passwordInput.getText().toString();
         LoginManager l = new LoginManager(username, password);
+
+        l.setRequestStates(new LoginManager.RequestStates() {
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onStart() {
+                // Disable input and show loader
+                usernameInput.setEnabled(false);
+                passwordInput.setEnabled(false);
+                loginSubmit.setEnabled(false);
+
+                usernameInput.setText(username);
+                passwordInput.setText(password);
+            }
+
+            @Override
+            public void onFinish(User user) {
+                if (user != null) {
+
+                    Intent mainIntent = new Intent(getActivity(), Main.class)
+                            .putExtra("user", user);
+                    startActivity(mainIntent);
+                    getActivity().finish();
+                }
+                else {
+                    usernameInput.setError("Invalid Credentials");
+                    usernameInput.requestFocus();
+                }
+
+                usernameInput.setEnabled(true);
+                passwordInput.setEnabled(true);
+                loginSubmit.setEnabled(true);
+            }
+        });
+
 	}
 }

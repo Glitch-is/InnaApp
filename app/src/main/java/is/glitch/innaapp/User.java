@@ -6,6 +6,9 @@ package is.glitch.innaapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.apache.http.impl.client.BasicCookieStore;
+import org.apache.http.impl.cookie.BasicClientCookie;
+
 public class User implements Parcelable {
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
         public User createFromParcel(Parcel pc) {
@@ -19,10 +22,12 @@ public class User implements Parcelable {
     private final String LOG_TAG = "Inna";
     private String Username;
     private String SessionID;
+    private BasicClientCookie Cookie;
 
-    public User(String username, String sessionID) {
+    public User(String username, String sessionID, BasicClientCookie cookie) {
         this.Username = username;
         this.SessionID = sessionID;
+        this.Cookie = cookie;
     }
 
     public User(Parcel pc) {
@@ -34,9 +39,9 @@ public class User implements Parcelable {
         return Username;
     }
 
-    public String getSessionID() {
-        return SessionID;
-    }
+    public String getSessionID() { return SessionID; }
+
+    public BasicClientCookie getCookie() { return Cookie; }
 
     @Override
     public int describeContents() {

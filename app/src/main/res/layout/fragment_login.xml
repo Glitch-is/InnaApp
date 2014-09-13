@@ -33,7 +33,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginBottom="6dp"
             android:hint="Kennitala"
-            android:inputType="textNoSuggestions|textWebEditText"/>
+            android:inputType="number"/>
 
         <EditText
             android:layout_width="match_parent"

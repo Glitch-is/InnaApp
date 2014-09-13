@@ -1,7 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <dimen name="login_padding_portrait">96dp</dimen>
     <dimen name="login_padding_landscape">32dp</dimen>
-
     <dimen name="button_min_width">100dp</dimen>
     <dimen name="button_min_height">45dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
 </resources>
