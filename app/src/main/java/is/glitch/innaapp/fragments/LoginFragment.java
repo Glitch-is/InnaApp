@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.json.JSONObject;
-
 import is.glitch.innaapp.LoginManager;
 import is.glitch.innaapp.Main;
 import is.glitch.innaapp.R;
@@ -41,7 +39,10 @@ public class LoginFragment extends Fragment {
 		loginSubmit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-                Login();
+				final String username = usernameInput.getText().toString().trim();
+				final String password = passwordInput.getText().toString();
+
+                Login(username, password);
 			}
 		});
 
@@ -49,47 +50,45 @@ public class LoginFragment extends Fragment {
 	}
 
 
-	public void Login() {
-		final String username = usernameInput.getText().toString();
-        final String password = passwordInput.getText().toString();
-        LoginManager l = new LoginManager(username, password);
+	public void Login(final String username, final String password) {
+        LoginManager loginManager = new LoginManager(username, password);
 
-        l.setRequestStates(new LoginManager.RequestStates() {
-            @Override
-            public void onError(Exception e) {
-                e.printStackTrace();
-            }
+        loginManager.setRequestStates(new LoginManager.RequestStates() {
+	        @Override
+	        public void onError(Exception e) {
+		        e.printStackTrace();
+	        }
 
-            @Override
-            public void onStart() {
-                // Disable input and show loader
-                usernameInput.setEnabled(false);
-                passwordInput.setEnabled(false);
-                loginSubmit.setEnabled(false);
+	        @Override
+	        public void onStart() {
+		        // Disable input and show loader
+		        usernameInput.setEnabled(false);
+		        passwordInput.setEnabled(false);
+		        loginSubmit.setEnabled(false);
 
-                usernameInput.setText(username);
-                passwordInput.setText(password);
-            }
+		        usernameInput.setText(username);
+		        passwordInput.setText(password);
+	        }
 
-            @Override
-            public void onFinish(User user) {
-                if (user != null) {
+	        @Override
+	        public void onFinish(User user) {
+		        if (user != null) {
 
-                    Intent mainIntent = new Intent(getActivity(), Main.class)
-                            .putExtra("user", user);
-                    startActivity(mainIntent);
-                    getActivity().finish();
-                }
-                else {
-                    usernameInput.setError("Invalid Credentials");
-                    usernameInput.requestFocus();
-                }
+			        Intent mainIntent = new Intent(getActivity(), Main.class)
+					        .putExtra("user", user);
+			        startActivity(mainIntent);
+			        getActivity().finish();
+		        } else {
+			        usernameInput.setError("Invalid Credentials");
+			        usernameInput.requestFocus();
+		        }
 
-                usernameInput.setEnabled(true);
-                passwordInput.setEnabled(true);
-                loginSubmit.setEnabled(true);
-            }
+		        usernameInput.setEnabled(true);
+		        passwordInput.setEnabled(true);
+		        loginSubmit.setEnabled(true);
+	        }
         });
+		loginManager.execute();
 
 	}
 }

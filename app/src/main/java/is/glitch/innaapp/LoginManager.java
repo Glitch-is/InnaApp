@@ -1,14 +1,10 @@
 package is.glitch.innaapp;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -21,9 +17,6 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import is.glitch.innaapp.User;
-import is.glitch.innaapp.activities.LoginActivity;
-import is.glitch.innaapp.fragments.LoginFragment;
 
 /**
  * Created by glitch on 9/11/14.
@@ -38,8 +31,6 @@ public class LoginManager extends AsyncTask<Void, Void, Void> {
     public LoginManager(String username, String password) {
         this.username = username;
         this.password = password;
-        this.listener = listener;
-        execute();
     }
 
     public void setRequestStates(RequestStates listener) {
@@ -101,7 +92,7 @@ public class LoginManager extends AsyncTask<Void, Void, Void> {
 
             }
         } catch (IOException e) {
-
+			Log.e("LoginManager", "Failed to connect to the internet");
         }
 
 
