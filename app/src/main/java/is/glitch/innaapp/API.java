@@ -1,5 +1,6 @@
 package is.glitch.innaapp;
 
+import android.content.Intent;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -10,52 +11,100 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Callable;
+
+import is.glitch.innaapp.activities.MainActivity;
 
 /**
  * Created by glitch on 9/13/14.
  */
 public class API {
 
-    public static String PostRequest(User user, String URL, List<NameValuePair> data) {
-        DefaultHttpClient http = new DefaultHttpClient();
-        HttpPost post = new HttpPost(URL);
+    private String responseStr;
+    private User user;
 
-        try {
-            post.setEntity(new UrlEncodedFormEntity(data));
-            HttpResponse response = http.execute(post);
-            return EntityUtils.toString(response.getEntity());
-        } catch (Exception e)
+    public interface Command {
+        void execute();
+    }
+
+    public API(User user)
+    {
+        this.user = user;
+    }
+
+    public void Request(User user, String URL, List<NameValuePair> data, String method, final Command cmd) {
+        Request r = new Request(user, URL, data, method);
+
+        r.setRequestStates(new Request.RequestStates() {
+            @Override
+            public void onError(Exception e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onFinish(String rStr) {
+                responseStr = rStr;
+                cmd.execute();
+            }
+        });
+        r.execute();
+    }
+
+
+    public void userInfo()
+    {
+        Request(user, "https://nam.inna.is/inna11/api/UserData/GetLoggedInUser", null, "GET", new userInfo_done());
+    }
+
+    public class userInfo_done implements Command
+    {
+        public void execute()
         {
-            Log.v("Inna API",  "Post request failed: " + e.getMessage());
-            return "Post request failed: " + e.getMessage();
+            Log.v("userInfo", responseStr);
+            try {
+                JSONObject obj = new JSONObject(responseStr);
+                user.setStudentID(obj.getString("studentId"));
+                scheduleWeek();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    public static String GetRequest(User user, String URL)
+    public void scheduleWeek()
     {
-        Log.v("API", "Logging in:" + user.getUsername());
-        DefaultHttpClient http = new DefaultHttpClient();
-        http.setCookieStore(user.getCookie());
-        HttpResponse response = null;
-        HttpGet get = new HttpGet(URL);
-
-        try {
-            response = http.execute(get);
-            return EntityUtils.toString(response.getEntity());
-        } catch (Exception e)
-        {
-            Log.v("Inna API", "Get request failed: " + e.getMessage());
-            return "Get request failed: " + e.getMessage();
-        }
+        DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+        Calendar today = Calendar.getInstance();
+        String start = df.format(today.getTime());
+        today.add(Calendar.DATE, 6);
+        String end = df.format(today.getTime());
+        Log.v("vars", start + " : " + end + " : " + user.getStudentID());
+        String url = "https://nam.inna.is/inna11/api/Timetable/GetTimetable?attendanceOverview=&class_id=&classroom_id=&date_from="+start+"&date_to="+end+"&group_id=&module_id=&staff_id=&student_id="+user.getStudentID()+"&terms=";
+        Log.v("URL", url);
+        Request(user, url, null, "GET", new scheduleWeek_done());
     }
 
-
-    public static String userInfo(User user)
+    public class scheduleWeek_done implements Command
     {
-        return GetRequest(user, "https://nam.inna.is/inna11/api/UserData/GetLoggedInUser");
+        public void execute()
+        {
+            Log.v("scheduleWeek", responseStr);
+        }
     }
 }
 

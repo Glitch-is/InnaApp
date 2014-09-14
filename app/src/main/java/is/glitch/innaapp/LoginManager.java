@@ -90,7 +90,7 @@ public class LoginManager extends AsyncTask<Void, Void, Void> {
 
                 cookieStore.addCookie(newCookie);
 
-                user = new User(username, sessionID, cookieStore);
+                user = new User(username, sessionID);
 
             }
         } catch (IOException e) {

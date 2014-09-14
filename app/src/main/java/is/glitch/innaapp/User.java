@@ -21,12 +21,11 @@ public class User implements Parcelable {
     private final String LOG_TAG = "Inna";
     private String Username;
     private String SessionID;
-    private BasicCookieStore Cookie;
+    private String StudentID;
 
-    public User(String username, String sessionID, BasicCookieStore cookie) {
+    public User(String username, String sessionID) {
         this.Username = username;
         this.SessionID = sessionID;
-        this.Cookie = cookie;
     }
 
     public User(Parcel pc) {
@@ -40,7 +39,13 @@ public class User implements Parcelable {
 
     public String getSessionID() { return SessionID; }
 
-    public BasicCookieStore getCookie() { return Cookie; }
+    public String getStudentID() {
+        return StudentID;
+    }
+
+    public void setStudentID(String s) {
+        StudentID = s;
+    }
 
     @Override
     public int describeContents() {

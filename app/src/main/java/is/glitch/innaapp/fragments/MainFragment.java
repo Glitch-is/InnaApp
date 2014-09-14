@@ -31,9 +31,9 @@ public class MainFragment extends Fragment {
         Bundle data = getActivity().getIntent().getExtras();
         user = data.getParcelable("user");
 
-        String s = API.userInfo(user);
+        API a = new API(user);
 
-        Log.v("Inna", "{"+s+"}");
+        a.userInfo();
 
         /*TextView test = (EditText) rootView.findViewById(R.id.input_username);
 
