@@ -7,7 +7,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.cookie.BasicClientCookie;
 
 public class User implements Parcelable {
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
@@ -22,9 +21,9 @@ public class User implements Parcelable {
     private final String LOG_TAG = "Inna";
     private String Username;
     private String SessionID;
-    private BasicClientCookie Cookie;
+    private BasicCookieStore Cookie;
 
-    public User(String username, String sessionID, BasicClientCookie cookie) {
+    public User(String username, String sessionID, BasicCookieStore cookie) {
         this.Username = username;
         this.SessionID = sessionID;
         this.Cookie = cookie;
@@ -41,7 +40,7 @@ public class User implements Parcelable {
 
     public String getSessionID() { return SessionID; }
 
-    public BasicClientCookie getCookie() { return Cookie; }
+    public BasicCookieStore getCookie() { return Cookie; }
 
     @Override
     public int describeContents() {

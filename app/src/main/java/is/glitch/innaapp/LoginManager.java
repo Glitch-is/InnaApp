@@ -88,7 +88,9 @@ public class LoginManager extends AsyncTask<Void, Void, Void> {
                 newCookie.setPath("/");
                 newCookie.setDomain("nam.inna.is");
 
-                user = new User(username, sessionID, newCookie);
+                cookieStore.addCookie(newCookie);
+
+                user = new User(username, sessionID, cookieStore);
 
             }
         } catch (IOException e) {

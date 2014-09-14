@@ -29,23 +29,26 @@ public class API {
             return EntityUtils.toString(response.getEntity());
         } catch (Exception e)
         {
-            Log.v("Inna API", e.getMessage());
-            return "{"+e.getMessage()+"}";
+            Log.v("Inna API",  "Post request failed: " + e.getMessage());
+            return "Post request failed: " + e.getMessage();
         }
     }
 
     public static String GetRequest(User user, String URL)
     {
+        Log.v("API", "Logging in:" + user.getUsername());
         DefaultHttpClient http = new DefaultHttpClient();
+        http.setCookieStore(user.getCookie());
+        HttpResponse response = null;
         HttpGet get = new HttpGet(URL);
 
         try {
-            HttpResponse response = http.execute(get);
+            response = http.execute(get);
             return EntityUtils.toString(response.getEntity());
         } catch (Exception e)
         {
-            Log.v("Inna API", "{"+e.getMessage()+"}");
-            return e.getMessage();
+            Log.v("Inna API", "Get request failed: " + e.getMessage());
+            return "Get request failed: " + e.getMessage();
         }
     }
 

@@ -3,6 +3,7 @@ package is.glitch.innaapp.fragments;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +42,16 @@ public class LoginFragment extends Fragment {
 		loginSubmit.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				final String username = usernameInput.getText().toString().trim();
-				final String password = passwordInput.getText().toString();
-
-//                Login(username, password);
-				User user = new User("testUser", "dummy", new BasicClientCookie("JSESSIONID", "dummy"));
-				Intent mainIntent = new Intent(getActivity(), MainActivity.class)
-						.putExtra("user", user);
-				startActivity(mainIntent);
+                final String username = usernameInput.getText().toString().trim();
+                final String password = passwordInput.getText().toString();
+                Log.v("Inna", "{" + username + "}");
+                if (username.length() == 0  || password.length() == 0)
+                {
+                    usernameInput.setError("Kennitala eða Lykilorð mega ekki vera tóm");
+                    usernameInput.requestFocus();
+                }
+                else
+                    Login(username, password);
 			}
 		});
 
@@ -67,7 +70,6 @@ public class LoginFragment extends Fragment {
 
 	        @Override
 	        public void onStart() {
-		        // Disable input and show loader
 		        usernameInput.setEnabled(false);
 		        passwordInput.setEnabled(false);
 		        loginSubmit.setEnabled(false);
@@ -85,7 +87,7 @@ public class LoginFragment extends Fragment {
 			        startActivity(mainIntent);
 			        getActivity().finish();
 		        } else {
-			        usernameInput.setError("Invalid Credentials");
+			        usernameInput.setError("Innskráning tókst ekki");
 			        usernameInput.requestFocus();
 		        }
 
