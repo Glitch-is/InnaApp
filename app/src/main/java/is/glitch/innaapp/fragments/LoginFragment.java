@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.apache.http.impl.cookie.BasicClientCookie;
-
 import is.glitch.innaapp.LoginManager;
 import is.glitch.innaapp.R;
 import is.glitch.innaapp.User;
@@ -45,7 +43,7 @@ public class LoginFragment extends Fragment {
                 final String username = usernameInput.getText().toString().trim();
                 final String password = passwordInput.getText().toString();
                 Log.v("Inna", "{" + username + "}");
-                if (username.length() == 0  || password.length() == 0)
+                if (username.isEmpty() || password.isEmpty())
                 {
                     usernameInput.setError("Kennitala eða Lykilorð mega ekki vera tóm");
                     usernameInput.requestFocus();
